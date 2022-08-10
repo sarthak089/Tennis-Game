@@ -38,9 +38,9 @@ window.onload = function () {
 function paddle2movement() {
   var paddle2Ycenter = paddle2Y + PADDLE_HEIGHT / 2;
   if (paddle2Ycenter < bally - 35) {
-    paddle2Y += 4;
+    paddle2Y += 8;
   } else if (paddle2Ycenter > bally + 35) {
-    paddle2Y -= 6;
+    paddle2Y -= 8;
   }
 }
 function moveEverything() {
@@ -50,6 +50,8 @@ function moveEverything() {
   if (ballx > canvas.width) {
     if (bally > paddle2Y && bally < paddle2Y + PADDLE_HEIGHT) {
       speedx = -speedx;
+      var deltaY = bally - (paddle1Y + PADDLE_HEIGHT/2);
+      speedy = deltaY*0.05
     } else {
       ballReset();
       player1score++;
@@ -58,6 +60,9 @@ function moveEverything() {
   if (ballx < 0) {
     if (bally > paddle1Y && bally < paddle1Y + PADDLE_HEIGHT) {
       speedx = -speedx;
+      var deltaY = bally - (paddle2Y + PADDLE_HEIGHT/2);
+      speedy = deltaY*0.05
+
     } else {
       ballReset();
       player2score++;
