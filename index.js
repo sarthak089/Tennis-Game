@@ -21,6 +21,10 @@ function calculateMousePos(evt) {
   };
 }
 function ballReset() {
+  if (player1score>=11 || player2score>=11){
+    player1score=0;
+    player2score=0;
+  }
   speedx = -speedx;
   ballx = canvas.width / 2;
   bally = canvas.height / 2;
@@ -43,6 +47,7 @@ function paddle2movement() {
     paddle2Y -= 8;
   }
 }
+
 function moveEverything() {
   paddle2movement();
   ballx = ballx + speedx;
@@ -51,7 +56,7 @@ function moveEverything() {
     if (bally > paddle2Y && bally < paddle2Y + PADDLE_HEIGHT) {
       speedx = -speedx;
       var deltaY = bally - (paddle1Y + PADDLE_HEIGHT/2);
-      speedy = deltaY*0.05
+      speedy = deltaY*0.10
     } else {
       ballReset();
       player1score++;
@@ -61,7 +66,7 @@ function moveEverything() {
     if (bally > paddle1Y && bally < paddle1Y + PADDLE_HEIGHT) {
       speedx = -speedx;
       var deltaY = bally - (paddle2Y + PADDLE_HEIGHT/2);
-      speedy = deltaY*0.05
+      speedy = deltaY*0.10
 
     } else {
       ballReset();
@@ -77,10 +82,21 @@ function moveEverything() {
 
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+  if(player1score==11 || player2score==11)
+  {
+    if(player1score==11){
+      canvasContext.fillStyle = "white";
+      canvasContext.fillText("Player 1 wins", 270,300);}
+    if(player2score==11){
+      canvasContext.fillStyle = "white";
+      canvasContext.fillText("Player 2 wins", 270,300);}
+      return;
+  }
   canvasContext.fillStyle = "white";
   canvasContext.fillRect(0, paddle1Y, 10, PADDLE_HEIGHT);
   canvasContext.fillStyle = "white";
   canvasContext.fillRect(canvas.width - 10, paddle2Y, 10, PADDLE_HEIGHT);
+  
   canvasContext.fillStyle = "white";
   canvasContext.beginPath();
   canvasContext.arc(ballx, bally, 10, 0, Math.PI * 2, true);
