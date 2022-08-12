@@ -42,9 +42,9 @@ window.onload = function () {
 function paddle2movement() {
   var paddle2Ycenter = paddle2Y + PADDLE_HEIGHT / 2;
   if (paddle2Ycenter < bally - 35) {
-    paddle2Y += 6;
+    paddle2Y += 7;
   } else if (paddle2Ycenter > bally + 35) {
-    paddle2Y -= 6;
+    paddle2Y -= 7;
   }
 }
 
